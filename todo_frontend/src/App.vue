@@ -1,19 +1,21 @@
 <template>
   <div id="app">
-    <!-- 路由占位符 -->
-    <router-view></router-view>
+    <TodoIndex></TodoIndex>
   </div>
 </template>
 
 <script>
-import Index from './components/Index'
+import TodoIndex from './components/TodoIndex'
 
 export default {
   name: 'app',
-  components: { Index }
+  components: { TodoIndex }
 }
 </script>
 
 <style>
-
+#app{
+  background-color: wheat;
+  height: auto;
+}
 </style>

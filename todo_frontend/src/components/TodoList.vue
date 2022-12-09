@@ -14,7 +14,7 @@
         width='100px'
       >
         <template v-slot='scope'>
-          <el-checkbox v-model='scope.row.done'></el-checkbox>
+          <el-checkbox v-model='scope.row.done' @change="update(scope.row.id)"></el-checkbox>
         </template>
       </el-table-column>
       <el-table-column label='操作' align='center' width='70px'>
@@ -24,10 +24,15 @@
             type='danger'
             icon='el-icon-delete'
             size='mini'
-            @click='removeUserById(scope.row.id)'
+            @click='remove(scope.row.id)'
           ></el-button>
         </template>
       </el-table-column>
+
+      <template slot="empty">
+        <el-empty description='暂无数据'></el-empty>
+      </template>
+
     </el-table>
   </div>
 </template>
@@ -35,38 +40,23 @@
 <script>
 export default {
   name: 'TodoList',
+  props: ['eventList'],
   data () {
     return {
-      eventList: null
-      // eventList: [
-      //   { id: '001', name: '去王克桢楼', done: true },
-      //   { id: '002', name: '去吃饭', done: true }
-      // ]
     }
   },
   methods: {
-    async getEventList () {
-      const { data: res } = await this.$http.get('index')
-      if (!res.flag) {
-        this.$message.error('获取todo列表失败!')
-      }
-      this.$message.success('获取todo列表成功!')
-      // eslint-disable-next-line vue/no-mutating-props
-      this.eventList = res.data
-      // console.log(res)
+    update (id) {
+      console.log('执行update', id)
+      this.$emit('update', id)
     },
-    // async addEvent () {
-    //   const { data: res } = await this.$http.post('index', this.addForm)
-    //   if (!res.flag) {
-    //     return this.$message.error('todo添加失败了~')
-    //   }
-    //   // 添加成后重新获取todo数据,不需要用户手动刷新
-    //   this.getEventList()
-    //   return this.$message.success('todo添加成功了~')
-    // },
+    remove (id) {
+      console.log('执行remove', id)
+      this.$emit('remove', id)
+    },
     tableRowClassName ({ row, rowIndex }) {
-      console.log('@row:', row)
-      console.log('@rowIndex:', rowIndex)
+      // console.log('@row:', row)
+      // console.log('@rowIndex:', rowIndex)
       if (row.done) {
         return 'deleted'
       } else {
@@ -74,9 +64,8 @@ export default {
       }
     }
   },
-  // props: ['eventList'],
   created () {
-    this.getEventList()
+    // this.getEventList()
   }
 }
 </script>

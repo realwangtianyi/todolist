@@ -14,7 +14,6 @@
 <script>
 export default {
   name: 'TodoHeader',
-  props: ['addTodo'],
   data () {
     return {
       newEventName: null
@@ -29,7 +28,8 @@ export default {
       console.log(this.newEventName)
       const todoObj = { name: this.newEventName, done: false, deleted: false }
       this.newEventName = ''
-      this.addTodo(todoObj)
+      // this.addTodo(todoObj)
+      this.$emit('addTodo', todoObj)
     }
   }
 }
