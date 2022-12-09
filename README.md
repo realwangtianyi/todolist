@@ -4,11 +4,17 @@ todolist应用是笔者开发的一款简易的待办事件记录应用。
 
 GitHub仓库为：
 
+https://github.com/realwangtianyi/todolist.git
+
 DockerHub仓库为：
+
+https://hub.docker.com/repository/docker/taitaicomedy/todo_mysql
+
+https://hub.docker.com/repository/docker/taitaicomedy/todo_app
 
 本文介绍了通过docker容器部署todolist应用的步骤。
 
-## 2. 环境准备：安装docker、docker-compose、git和npm
+## 2. 环境准备：安装docker、docker-compose、git和npm14
 
 备注：docker和docker-compose必须安装，git和npm可以不安装，通过文件传输等其他方式获取源码和前端dist文件。
 
@@ -44,11 +50,15 @@ yum install -y git
 
 执行结束后，运行git --version，如果能显示git版本信息，说明安装成功。
 
-### 2.4 安装npm
+### 2.4 安装npm14
 
 执行下列命令：
 
-yum install -y npm
+yum remove -y npm
+
+curl --silent --location https://rpm.nodesource.com/setup_14.x | bash -
+
+yum install -y nodejs
 
 执行结束后，运行npm --version，如果能显示npm版本信息，说明安装成功。
 
@@ -62,16 +72,30 @@ yum install -y npm
 
 ## 4. 准备nginx配置文件和前端静态文件
 
-### 4.1 准备nginx配置文件
+### 4.1 拉取GitHub源码和准备nginx配置文件
 
-将
+依次执行下列命令：
 
-### 4.2 生成前端静态文件
+mkdir /myprojects
 
-从GitHub上拉取todo项目源码。并在todo_frontend/src/main.js中的“axios.defaults.baseURL = 'http://服务器IP地址:端口号'”处填写你要将后端部署的服务器的IP地址和端口号。端口号需要跟下文的docker-compose.yml一致。
+git clone https://github.com/realwangtianyi/todolist.git
 
-修改后，在todo_frontend目录下执行npm run build，即可生成dist目录。
+cd todolist
 
-将生成的dist目录放置到4.1中的/data/nginx/html中去，执行后的文件目录结构形如/data/nginx/html/dist/......
+此时便进入了todolist应用源码所在的根目录（/myprojects/todolist），此时若执行ls，应出现todo_backend、todo_frontend、todo_docker_image、todo_nginx_conf等子目录，分别代表后端源码、前端源码、docker镜像制作脚本、用于挂载的nginx配置文件。todo_nginx_conf即为可供挂载的nginx配置文件目录。
+
+### 4.3 生成前端静态文件
+
+从GitHub上拉取todo项目源码。并在todo_frontend/src/main.js中的“axios.defaults.baseURL = 'http://服务器IP地址:端口号'”处填写你要将后端部署的服务器的IP地址和端口号。端口号需要跟下文的docker-compose.yml一致。（可以用vim编辑）
+
+编辑后，在todo_frontend目录下依次执行下列命令：
+
+npm install
+
+npm run build
+
+执行完成后，即可生成dist目录。
+
+在todo_frontend目录下运行cp ，将生成的dist目录放置到4.1中的/data/nginx/html中去，执行后的文件目录结构形如/data/nginx/html/dist/......
 
 的
