@@ -117,10 +117,11 @@ ls # 查看todolist目录中有哪些子目录
 
 ```
 README.md # README文件
-todo_frontend # 前端程序的源代码，Vue2编写
-todo_backend # 后端程序的源代码，Spring Boot编写
-todo_docker_image # 镜像制作文件，含Dockerfile等
-todo_nginx_conf # nginx服务器配置文件相关内容
+pictures # 存放README.md中图片的目录
+todo_frontend # 前端程序的源代码目录，Vue2编写
+todo_backend # 后端程序的源代码目录，Spring Boot编写
+todo_docker_image # 镜像制作文件目录，含Dockerfile等
+todo_nginx_conf # nginx服务器配置文件相关内容目录
 ```
 
 ### 4.3 生成前端静态文件
@@ -229,5 +230,5 @@ docker system prune -f
 
 附：界面截图
 
-![image-20221210113822365](C:\Users\11243\AppData\Roaming\Typora\typora-user-images\image-20221210113822365.png)
+![](pictures\main.png)
 

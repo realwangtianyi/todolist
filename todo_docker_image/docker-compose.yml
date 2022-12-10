@@ -19,7 +19,7 @@ services:
   container_todo_nginx:
     image: nginx:1.23.2  # nginx http服务器镜像，用于部署vue
     ports:
-      - "8112:80" # 如果执行后提示8111端口被占用或其他原因，左边那个8111端口也可以改成其它未被占用的端口，这里是几，在浏览器地址栏输入的端口就是几。右边那个80是nginx的监听端口，不要修改。
+      - "8111:80" # 如果执行后提示8111端口被占用或其他原因，左边那个8111端口也可以改成其它未被占用的端口，这里是几，在浏览器地址栏输入的端口就是几。右边那个80是nginx的监听端口，不要修改。
     volumes:
       - /myprojects/todolist/todo_nginx_conf/html:/usr/share/nginx/html
       - /myprojects/todolist/todo_nginx_conf/nginx.conf:/etc/nginx/nginx.conf
