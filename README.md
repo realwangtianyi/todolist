@@ -29,6 +29,8 @@ https://hub.docker.com/repository/docker/taitaicomedy/todo_app
 ```shell
 yum install -y docker
 docker --version # 若显示docker版本信息，说明安装成功。
+systemctl start docker # 启动docker，否则后续执行docker-compose up会报错
+systemctl enable docker # 启动docker，否则后续执行docker-compose up会报错
 ```
 
 ### 2.2 安装docker-compose
@@ -208,6 +210,10 @@ services:
       - /myprojects/todolist/todo_nginx_conf/logs:/var/log/nginx
       - /myprojects/todolist/todo_nginx_conf/conf:/etc/nginx/conf.d
 ```
+
+如果修改端口，要注意修改成没有被占用的端口。
+
+Cent OS下查看端口是否被占用请参考https://blog.csdn.net/qq_38766930/article/details/123707354。
 
 ### 5.2 执行docker-compose.yml文件
 
