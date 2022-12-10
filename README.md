@@ -16,7 +16,7 @@ https://hub.docker.com/repository/docker/taitaicomedy/todo_mysql
 
 https://hub.docker.com/repository/docker/taitaicomedy/todo_app
 
-本文以Linux系统I(尤其是CentOS 8系统)为例，介绍了通过docker容器部署todolist应用的步骤。
+本文以Linux系统（尤其是CentOS 8系统）为例，介绍了通过docker容器部署todolist应用的步骤。
 
 ## 2. 环境准备：安装docker、docker-compose、git和npm14
 
