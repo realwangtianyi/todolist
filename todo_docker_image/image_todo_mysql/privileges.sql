@@ -1,5 +1,5 @@
 use mysql;
-create user wangtianyi identified by '123456';
+create user if not exists wangtianyi identified by '123456';
 select host, user from user;
 update user set host='%' where user='root';
 update user set host='%' where user='wangtianyi';
