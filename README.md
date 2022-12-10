@@ -126,7 +126,7 @@ todo_docker_image # 镜像制作文件目录，含Dockerfile等
 todo_nginx_conf # nginx服务器配置文件相关内容目录
 ```
 
-### 4.3 生成前端静态文件
+### 4.2 生成前端静态文件
 
 ```
 vim /myprojects/todolist/todo_frontend/src/main.js # 编辑main.js文件
