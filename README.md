@@ -236,5 +236,5 @@ docker system prune -f
 
 附：界面截图
 
-![](pictures\main.png)
+![](pictures/main.png)
 
